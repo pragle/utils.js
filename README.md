@@ -6,3 +6,7 @@ Utility javascript utils.js
 utils.Logger
 utils.Observer
 </pre>
+<p>Other : </p>
+<pre>
+utils.HTTP
+</pre>
