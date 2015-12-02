@@ -31,3 +31,5 @@ Other
 utils.HTTP
 utils.html
 ```
+<br />
+Licensed : BSD License
