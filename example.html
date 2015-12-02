@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div>
+        <h3>Observer : </h3>
+        <div>
+            <input id="listener_add_input" type="text" value="test">
+            <button onclick="test.add();">Add Listener</button>
+        </div>
+        <div>
+            <input id="listener_has_input" type="text" value="test">
+            <button onclick="test.has()">Has Listener</button>
+        </div>
+        <div>
+            <input id="listener_dispatch_input" type="text" value="test">
+            <input id="listener_dispatch_input_data" type="text" value="test data">
+            <button onclick="test.dispatch()">Dispatch</button>
+        </div>
+        <div>
+            <input id="listener_remove_input" type="text" value="test">
+            <button onclick="test.remove();">Remove Listener</button>
+        </div>
+    </div>
+    <div>
+        <h3>Logger :</h3>
+        <h4>level <span id="logger_level_span"></span></h4>
+        <div>
+            <button onclick="test.setLevel(utils.Logger.LOG);">log</button>
+            <button onclick="test.setLevel(utils.Logger.DEBUG);">debug</button>
+            <button onclick="test.setLevel(utils.Logger.INFO);">info</button>
+            <button onclick="test.setLevel(utils.Logger.WARN);">warn</button>
+            <button onclick="test.setLevel(utils.Logger.ERROR);">error</button>
+            <button onclick="test.setLevel(utils.Logger.OFF);">Disable Logging</button>
+        </div>
+        <br />
+        <div>
+            <span>log message : </span>
+            <input id="logger_msg_input" type="text" value="test">
+            <button onclick="utils.Logger.log(utils.html.id('logger_msg_input').value);">log</button>
+            <button onclick="utils.Logger.debug(utils.html.id('logger_msg_input').value);">debug</button>
+            <button onclick="utils.Logger.info(utils.html.id('logger_msg_input').value);">info</button>
+            <button onclick="utils.Logger.warn(utils.html.id('logger_msg_input').value);">warn</button>
+            <button onclick="utils.Logger.error(utils.html.id('logger_msg_input').value);">error</button>
+            <button onclick="utils.Logger.alert(utils.html.id('logger_msg_input').value);">alert</button>
+            <button onclick="utils.Logger.div(utils.html.id('logger_msg_input').value);">div</button>
+        </div>
+    </div>
+    <br />
+    <button onclick="utils.html.id('debug').innerHTML = ''">Clear debug div</button>
+    <h3>Debug div : </h3>
+    <div id="debug"></div>
+</body>
+<script type="text/javascript" src="utils.js"></script>
+<script>
+    var test = (function(test) {
+        var obs = new utils.Observer();
+        var Logger = utils.Logger;
+
+        var level_span = utils.html.id('logger_level_span');
+
+        var addCallback = function(data) {
+            Logger.div('received : "'+ data+'"');
+        }
+
+        // observer
+
+        test.add = function() {
+            var event = utils.html.id('listener_add_input').value;
+            Logger.div('add listener : '+event);
+            obs.listen(event, addCallback);
+        }
+        test.remove = function() {
+            var event = utils.html.id('listener_remove_input').value;
+            obs.removeListener(event, addCallback);
+        }
+        test.has = function() {
+            var event = utils.html.id('listener_has_input').value;
+            Logger.div('has listener : '+obs.hasListener(event, addCallback));
+        }
+        test.dispatch = function() {
+            var event = utils.html.id('listener_remove_input').value;
+            var data = utils.html.id('listener_dispatch_input_data').value;
+            Logger.div('dispatching : '+event+', with data : "'+data+'"');
+            obs.dispatch(event, data);
+        }
+
+        // logger
+        test.setLevel = function(level) {
+            Logger.level = level;
+            switch(level) {
+                case Logger.LOG:
+                    level_span.innerHTML = 'LOG - '+Logger.level;
+                    break;
+                case Logger.DEBUG:
+                    level_span.innerHTML = 'DEBUG - '+Logger.level;
+                    break;
+                case Logger.INFO:
+                    level_span.innerHTML = 'INFO - '+Logger.level;
+                    break;
+                case Logger.WARN:
+                    level_span.innerHTML = 'WARN - '+Logger.level;
+                    break;
+                case Logger.ERROR:
+                    level_span.innerHTML = 'ERROR - '+Logger.level;
+                    break;
+                case Logger.OFF:
+                    level_span.innerHTML = 'OFF - '+Logger.level;
+                    break;
+                default :
+                    level_span.innerHTML = 'hmm : '+Logger.level;
+                    break;
+            }
+
+        }
+        test.setLevel(Logger.level);
+
+        return test;
+    })(test || (test = {}));
+</script>
+</html>
