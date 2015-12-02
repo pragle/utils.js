@@ -1,7 +1,7 @@
 Utility javascript utils.js
 ====================
 
-run example.html to check functionalities of : 
+run <a href='https://rawgit.com/pragle/utils.js/master/example.html'>example.html</a> to check functionalities of : 
 ```javascript
 utils.Logger
 utils.Observer
