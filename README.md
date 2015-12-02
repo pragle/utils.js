@@ -1,14 +1,14 @@
 Utility javascript utils.js
 ====================
 
-<p>run example.html to check functionalities of :</p> 
-<pre>
+run example.html to check functionalities of : 
+```javascript
 utils.Logger
 utils.Observer
-</pre>
-<h4>utils.Observer<h4>
-<p>inspired by actionscript EventDispatcher</p>
-<p>can dispatch, listen, remove events with data ex.</p>
+```
+####utils.Observer
+inspired by actionscript EventDispatcher
+can dispatch, listen, remove events with data ex.
 ```javascript
 var o = new utils.Observer();
 o.listen('e', function(data) {
@@ -19,6 +19,7 @@ o.listen('e', function(data) {
 });
 o.dispatch('e', 'test');
 o.removeTypeAllListeners('e');
+o.dispatch('e', 'test');
 ```
 <p>Other : </p>
 <pre>
