@@ -9,7 +9,7 @@ utils.Observer
 <h4>utils.Observer<h4>
 <p>inspired by actionscript EventDispatcher</p>
 <p>can dispatch, listen, remove events with data ex.</p>
-'''javascript
+```javascript
 var o = new utils.Observer();
 o.listen('e', function(data) {
     alert('from first');
@@ -19,7 +19,7 @@ o.listen('e', function(data) {
 });
 o.dispatch('e', 'test');
 o.removeTypeAllListeners('e');
-'''
+```
 <p>Other : </p>
 <pre>
 utils.HTTP
