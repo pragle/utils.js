@@ -29,4 +29,5 @@ Other
 <br />
 ```javascript
 utils.HTTP
+utils.html
 ```
